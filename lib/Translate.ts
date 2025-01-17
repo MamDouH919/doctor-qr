@@ -1,0 +1,38 @@
+const translate = {
+    "ar": {
+        "Home": "الرئيسية",
+        "About": "معلومات",
+        "Articles": "مقالات",
+        "FAQ": "الأسئلة الشائعة",
+        "FAQTitle": "الأسئلة الشائعة",
+        "Videos": "فيديوهات",
+        "Schedule a Call": "جدولة مكالمة",
+        "Watch Videos": "شاهد فيديوهات",
+        "Online Consultation": "مساعدة عبر الإنترنت",
+        "innovativeMedicine": "الطب المتطور",
+        "watchVideos": "شاهد الفيديوهات",
+        "videos": "فيديوهات",
+        "scheduleACall": "جدولة مكالمة",
+        "copyright": "2025 مدعوم بواسطة",
+        "NoVideos": "لا توجد فيديوهات",
+    },
+    "en": {
+        "Home": "Home",
+        "About": "About",
+        "Articles": "Articles",
+        "FAQ": "FAQ",
+        "FAQTitle": "Frequently Asked Questions",
+        "Videos": "Videos",
+        "Schedule a Call": "Schedule a Call",
+        "Watch Videos": "Watch Videos",
+        "Online Consultation": "Online Consultation",
+        "innovativeMedicine": "Innovative Medicine",
+        "watchVideos": "Watch Videos",
+        "videos": "Videos",
+        "scheduleACall": "Schedule a Call",
+        "copyright": "2025 Powered By",
+        "NoVideos": "No Videos Available",
+    },
+};
+
+export default translate;
