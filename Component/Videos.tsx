@@ -5,6 +5,7 @@ import Line from "./Line";
 import translate from "@/lib/Translate";
 import { useContext } from "react";
 import { ClientContext } from "@/Providers/contexts/ClientContext";
+import VideoEmbed from "./VideoEmbed";
 
 export function VideosSection() {
     const context = useContext(ClientContext);
@@ -23,15 +24,16 @@ export function VideosSection() {
                         {context?.state.clientData?.videos && context?.state.clientData?.videos.length > 0 ? (
                             context?.state.clientData?.videos.map((video, index) => (
                                 <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
-                                    <iframe
+                                    {/* <iframe
                                         width="100%"
                                         height="100%"
-                                        src={video.path}
+                                        src={"https://www.facebook.com/watch/?mibextid=wwXIfr&v=426063907166973&rdid=HLMMepE7bC5uWeh8"}
                                         title={video.title}
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
-                                    />
+                                    /> */}
+                                    <VideoEmbed url={video.path} />
                                 </Grid>
                             ))
                         ) : (
