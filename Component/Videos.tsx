@@ -26,7 +26,7 @@ export function VideosSection() {
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src={"https://youtube.com/embed/dQw4w9WgXcQ"}
+                                        src={video.path}
                                         title={video.title}
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

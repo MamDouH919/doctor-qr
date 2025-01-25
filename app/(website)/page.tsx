@@ -29,6 +29,7 @@ import { FAQSection } from "@/Component/Faq";
 import { VideosSection } from "@/Component/Videos";
 import Footer from "@/Component/Footer";
 import Social from "@/Component/Social";
+import Image from "next/image";
 
 
 // Custom theme with primary color
@@ -45,6 +46,7 @@ const AboutSection = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2, 0),
   position: "relative",
 }));
+
 const StackStyle = styled(Stack)(({ theme }) => ({
   alignItems: "center",
   textAlign: "center",
@@ -68,6 +70,14 @@ const AppBarStyle = styled(AppBar)(() => ({
 
 const PlayArrowAr = styled(PlayArrow)(() => ({
   rotate: "-180deg",
+}));
+
+
+const ImageStyle = styled(Image)(({ theme }) => ({
+  WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  WebkitFilter: "drop-shadow(2px 1px 5px #222)",
+  filter: "drop-shadow(2px 1px 5px #222)",
 }));
 
 
@@ -102,12 +112,14 @@ export default function Home() {
     setOpen(true)
   }
 
+
+
   return (
     <Box minHeight="100vh" position={"relative"} zIndex={10}>
       {open && <CustomDialog
         open={open}
         handleClose={handleClose}
-        title={"Online Consultation"}
+        title={translate[context?.state.clientData?.lang as "ar" | "en"]["onlineConsultation"]}
         maxWidth='xs'
         content={
           <Stack p={2} spacing={2} alignItems={"center"}>
@@ -149,7 +161,7 @@ export default function Home() {
                   {translate[context?.state.clientData?.lang as "ar" | "en"]["FAQ"]}
                 </Button>
                 <Button variant="contained" onClick={handleOpen}>
-                  {translate[context?.state.clientData?.lang as "ar" | "en"]["Online Consultation"]}
+                  {translate[context?.state.clientData?.lang as "ar" | "en"]["onlineConsultation"]}
                 </Button>
               </Box>
               {/* <Box sx={{ ml: "auto", display: { xs: "flex", md: "none" } }}>
@@ -205,7 +217,7 @@ export default function Home() {
                     handleCloseNavMenu()
                   }}>
                     <Typography sx={{ textAlign: 'center' }}>
-                      {translate[context?.state.clientData?.lang as "ar" | "en"]["Online Consultation"]}
+                      {translate[context?.state.clientData?.lang as "ar" | "en"]["onlineConsultation"]}
                     </Typography>
                   </MenuItem>
                 </Menu>
@@ -256,10 +268,14 @@ export default function Home() {
               </Grid>
               <Grid size={{ xs: 12, lg: 4 }}>
                 <Stack justifyContent={"center"} alignItems={"center"}>
-                  <img
-                    src={context?.state.clientData?.image}
+                  <ImageStyle
+                    property="og:image"
+                    onLoad={(e) => console.log(e.target)}
+                    src={context?.state.clientData?.image ?? "/logo.webp"}
                     alt={context?.state.clientData?.name ?? "Doctor"}
-                    style={{ maxHeight: "500px", objectFit: "contain" }}
+                    width={500}
+                    height={500}
+                    objectFit="contain"
                   />
                 </Stack>
               </Grid>

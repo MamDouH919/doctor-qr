@@ -1,5 +1,6 @@
 "use client"
 import { ClientContext } from '@/Providers/contexts/ClientContext';
+import { Stack } from '@mui/material';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { DNA } from 'react-loader-spinner'
@@ -16,7 +17,7 @@ const GetClient = ({ children }: { children: React.ReactNode }) => {
             try {
                 const response = await axios.get(`/api/client?domain=${currentDomain}`);
                 console.log(response.data);
-                
+
                 context?.dispatch({ type: "SET_CLIENT_DATA", payload: response.data });
                 setLoading(false);
 
@@ -38,22 +39,23 @@ const GetClient = ({ children }: { children: React.ReactNode }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return loading ? <div className="h-screen w-screen flex justify-center items-center">
-        <DNA
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="dna-loading"
-            wrapperStyle={{}}
-            wrapperClass="dna-wrapper"
-        />
-    </div> : context?.state.clientData ? (
-        <>
-            {children}
-        </>
-    ) : <div>
-        <h1>No Doctor Found</h1>
-    </div>
+    return loading ?
+        <Stack position={"absolute"} top={0} left={0} right={0} bottom={0} zIndex={10} alignItems={"center"} justifyContent={"center"}>
+            <DNA
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+            />
+        </Stack> : context?.state.clientData ? (
+            <>
+                {children}
+            </>
+        ) : <div>
+            <h1>No Doctor Found</h1>
+        </div>
 };
 
 export default GetClient;

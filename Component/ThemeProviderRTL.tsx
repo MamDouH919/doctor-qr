@@ -10,7 +10,7 @@ const ThemeProviderRTL = ({ children }: { children: React.ReactNode }) => {
     const context = useContext(ClientContext);
 
     const theme = createTheme({
-        direction: 'rtl',
+        direction: context?.state.clientData?.lang === "ar" ? "rtl" : "ltr",
         cssVariables: true,
         palette: {
             primary: {
