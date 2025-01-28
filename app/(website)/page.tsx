@@ -73,11 +73,11 @@ const PlayArrowAr = styled(PlayArrow)(() => ({
 }));
 
 
-const ImageStyle = styled(Image)(({ theme }) => ({
-  WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-  transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-  WebkitFilter: "drop-shadow(2px 1px 5px #222)",
-  filter: "drop-shadow(2px 1px 5px #222)",
+const ImageStyle = styled(Image)(() => ({
+  // WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  // transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  // WebkitFilter: "drop-shadow(2px 1px 5px #222)",
+  // filter: "drop-shadow(2px 1px 5px #222)",
 }));
 
 
@@ -237,12 +237,16 @@ export default function Home() {
 
                 <StackStyle spacing={2}>
                   <Chip label={translate[context?.state.clientData?.lang as "ar" | "en"]["innovativeMedicine"]} variant="outlined" color="primary" />
+                  <Typography variant="h1" fontSize={32} fontWeight={700} color="primary">
+                    {'"' + context?.state.clientData?.name + '" '}
+                  </Typography>
                   <Typography
                     variant="h3"
+                    fontSize={40}
                     gutterBottom
                     fontWeight={700}
                   >
-                    {'"' + context?.state.clientData?.name + '" '}{context?.state.clientData?.title}
+                    {context?.state.clientData?.title}
                   </Typography>
                   <Typography variant="body1" color="textSecondary" gutterBottom>
                     {context?.state.clientData?.description}
