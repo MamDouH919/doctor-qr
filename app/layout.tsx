@@ -15,11 +15,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const headerList = headers();
   const currentDomain = (await headerList).get("host");
 
-  console.log(currentDomain?.split(":")[0]);
-
-
   async function fetchServicesFromAPI() {
-    const response = await fetch(`${process.env.BACKEND}/api/client?domain=${currentDomain?.split(":")[0]}`, {
+    const response = await fetch(`https://doctor.mountain-egy.site/api/client?domain=${currentDomain?.split(":")[0]}`, {
       cache: 'no-store', // Disable caching
     });
 
