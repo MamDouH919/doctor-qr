@@ -18,9 +18,6 @@ import translate from "@/lib/Translate";
 export function FAQSection() {
     const context = useContext(ClientContext);
 
-    console.log(context);
-    
-
     return (
         <Box
             component="section"

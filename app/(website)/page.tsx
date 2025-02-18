@@ -98,9 +98,16 @@ export default function Home() {
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
+    if (!element) {
+      return
+    }
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: "center" });
     }
+    
+    setTimeout(() => {
+      handleCloseNavMenu()
+    }, 800);
   };
 
   const [open, setOpen] = useState(false)
@@ -197,17 +204,21 @@ export default function Home() {
                   sx={{ display: { xs: 'block', md: 'none' } }}
                 >
 
-                  <MenuItem onClick={() => { handleCloseNavMenu(); scrollToSection("about") }}>
+                  <MenuItem
+                    onClick={() => {
+                      scrollToSection("about")
+                    }}
+                  >
                     <Typography sx={{ textAlign: 'center' }}>
                       {translate[context?.state.clientData?.lang as "ar" | "en"]["About"]}
                     </Typography>
                   </MenuItem>
-                  <MenuItem onClick={() => { handleCloseNavMenu(); scrollToSection("articles") }}>
+                  <MenuItem onClick={() => { scrollToSection("articles") }}>
                     <Typography sx={{ textAlign: 'center' }}>
                       {translate[context?.state.clientData?.lang as "ar" | "en"]["Articles"]}
                     </Typography>
                   </MenuItem>
-                  <MenuItem onClick={() => { handleCloseNavMenu(); scrollToSection("faq") }}>
+                  <MenuItem onClick={() => { scrollToSection("faq") }}>
                     <Typography sx={{ textAlign: 'center' }}>
                       {translate[context?.state.clientData?.lang as "ar" | "en"]["FAQ"]}
                     </Typography>
@@ -274,7 +285,6 @@ export default function Home() {
                 <Stack justifyContent={"center"} alignItems={"center"}>
                   <ImageStyle
                     property="og:image"
-                    onLoad={(e) => console.log(e.target)}
                     src={context?.state.clientData?.image ?? "/logo.webp"}
                     alt={context?.state.clientData?.name ?? "Doctor"}
                     width={500}

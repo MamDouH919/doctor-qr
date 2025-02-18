@@ -13,6 +13,7 @@ export async function POST(req: Request): Promise<NextResponse> {
             name,
             title,
             description,
+            appointments,
             image,
             color,
             lang,
@@ -27,10 +28,6 @@ export async function POST(req: Request): Promise<NextResponse> {
             domain
         } = await req.json();
 
-        console.log(whatsApp,
-            phone,
-            social,);
-
         // Check if the client exists by id
         const existingClient = await Clients.findById(id);
         if (!existingClient) {
@@ -44,6 +41,7 @@ export async function POST(req: Request): Promise<NextResponse> {
         existingClient.name = name || existingClient.name;
         existingClient.title = title || existingClient.title;
         existingClient.description = description || existingClient.description;
+        existingClient.appointments = appointments || existingClient.appointments;
         existingClient.image = image || existingClient.image;
         existingClient.color = color || existingClient.color;
         existingClient.lang = lang || existingClient.lang;

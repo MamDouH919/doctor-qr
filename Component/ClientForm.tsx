@@ -42,18 +42,15 @@ const ClientForm = ({
     const socialArray = useFieldArray({ control, name: "social" });
 
     const onSubmit = async (data: any) => {
-        console.log(data);
         try {
             if (id) {
                 data.id = id;
                 // Make a PUT request to your API endpoint
-                const response = await axios.post(`/api/updateClient`, data);
-                console.log("Client updated successfully:", response.data);
+                await axios.post(`/api/updateClient`, data);
                 alert("Client updated successfully!");
             } else {
                 // Make a POST request to your API endpoint
-                const response = await axios.post("/api/newClient", data);
-                console.log("Client saved successfully:", response.data);
+                await axios.post("/api/newClient", data);
                 alert("Client saved successfully!");
             }
         } catch (error: any) {
@@ -65,12 +62,10 @@ const ClientForm = ({
     const router = useRouter();
     useEffect(() => {
         if (id) {
-            console.log("id", id);
             // Fetch data from the server
             const fetchData = async () => {
                 try {
                     const response = await axios.get(`/api/clientById?id=${id}`);
-                    console.log(response.data);
                     setValue("domain", response.data.domain);
                     setValue("name", response.data.name);
                     setValue("title", response.data.title);
@@ -108,8 +103,7 @@ const ClientForm = ({
             reader.onload = (e) => {
                 try {
                     const jsonData = JSON.parse(e.target?.result as string);
-                    console.log(jsonData);
-                    
+
                     reset(jsonData); // Populate the form with the uploaded JSON data
                 } catch {
                     alert("Invalid JSON file");

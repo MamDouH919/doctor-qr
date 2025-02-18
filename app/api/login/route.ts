@@ -11,9 +11,7 @@ const user = {
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    console.log("Received POST request");
     const { username, password } = await req.json();
-    console.log("Parsed request body:", { username, password });
     const oneMonthInSeconds = 30 * 24 * 60 * 60; // 30 days in seconds
 
     if (username === user.username && password === user.password) {
@@ -21,8 +19,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         .setProtectedHeader({ alg: "HS256" })
         .setExpirationTime(Math.floor(Date.now() / 1000) + oneMonthInSeconds)
         .sign(SECRET_KEY);
-
-      console.log("Generated token:", token);
 
       const response = NextResponse.json({ message: "Login successful" });
       response.cookies.set("token", token, {
@@ -33,7 +29,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return response;
     }
 
-    console.log("Invalid credentials");
     return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
   } catch (error) {
     console.error("Error processing login:", error);

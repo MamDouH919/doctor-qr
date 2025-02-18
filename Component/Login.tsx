@@ -61,8 +61,6 @@ const Login = () => {
             
             router.replace('/admin');
         } catch (error: any) {
-            console.log(error);
-            console.log('Error creating user:', error.response.data)
             setErrorMessage(error.response.data.message)
             // Handle the error (you can show an error message here)
         }

@@ -26,11 +26,6 @@ export async function POST(req: Request): Promise<NextResponse> {
             social,
         } = await req.json();
 
-        console.log(whatsApp,
-            phone,
-            social,);
-        
-
         // Ensure the domain is unique
         const existingClient = await Clients.findOne({ domain });
         if (existingClient) {

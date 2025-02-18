@@ -15,7 +15,6 @@ const Page = () => {
         try {
             const response = await axios.get(`/api/clients`)
             setLoading(false);
-            console.log(response.data);
             setData(response.data);
         } catch {
             setLoading(false);

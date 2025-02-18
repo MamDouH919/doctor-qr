@@ -36,6 +36,9 @@ const ClientsSchema = new mongoose.Schema({
   social: [SocialSchema], // Array of video URLs
   domain: { type: String, required: true },
   active: { type: Boolean, required: true, default: true },
+}, {
+  timestamps: true,
+  versionKey: false,
 });
 
 // Export the model

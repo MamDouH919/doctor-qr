@@ -7,12 +7,9 @@ const SECRET_KEY = new TextEncoder().encode(process.env.SECRET_KEY); // Use a se
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
-  console.log("Token:", token);
-
   // If the request is for /admin and no valid token, redirect to /
   if (request.nextUrl.pathname.startsWith("/admin")) {
     if (!token) {
-      console.log("No token found, redirecting to /");
       return NextResponse.redirect(new URL("/", request.url));
     }
 
