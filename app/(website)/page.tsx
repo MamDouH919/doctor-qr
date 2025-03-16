@@ -29,7 +29,7 @@ import { FAQSection } from "@/Component/Faq";
 import { VideosSection } from "@/Component/Videos";
 import Footer from "@/Component/Footer";
 import Social from "@/Component/Social";
-import Image from "next/image";
+// import Image from "next/image";
 
 
 // Custom theme with primary color
@@ -73,12 +73,30 @@ const PlayArrowAr = styled(PlayArrow)(() => ({
 }));
 
 
-const ImageStyle = styled(Image)(() => ({
-  // WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-  // transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-  // WebkitFilter: "drop-shadow(2px 1px 5px #222)",
-  // filter: "drop-shadow(2px 1px 5px #222)",
-}));
+// const ImageStyle = styled(Image)(() => ({
+//   // WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+//   // transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+//   // WebkitFilter: "drop-shadow(2px 1px 5px #222)",
+//   // filter: "drop-shadow(2px 1px 5px #222)",
+// }));
+
+const ImageWrapper = styled(Box)(({ theme }) => ({
+  height: 450,
+  width: 350,
+  border: `5px solid ${theme.palette.primary.main}`,
+  position: "relative",
+}))
+
+const BoxStyle = styled(Box)(() => ({
+  position: "absolute",
+  top: -15,
+  right: 15,
+  height: "100%",
+  width: "100%",
+  "& img": {
+    objectFit: "cover",
+  }
+}))
 
 
 export default function Home() {
@@ -104,7 +122,7 @@ export default function Home() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: "center" });
     }
-    
+
     setTimeout(() => {
       handleCloseNavMenu()
     }, 800);
@@ -243,8 +261,8 @@ export default function Home() {
         <HeroSection >
           <Circles bottom="25px" />
           <Container>
-            <Grid container spacing={2} alignItems={"center"} zIndex={11} position={"relative"}>
-              <Grid size={{ xs: 12, lg: 6 }}>
+            <Grid container spacing={2} alignItems={"center"} zIndex={11} position={"relative"} mt={5}>
+              <Grid size={{ xs: 12, md: 6 }}>
 
                 <StackStyle spacing={2}>
                   <Chip label={translate[context?.state.clientData?.lang as "ar" | "en"]["innovativeMedicine"]} variant="outlined" color="primary" />
@@ -279,10 +297,26 @@ export default function Home() {
                   </Stack>
                 </StackStyle>
               </Grid>
-              <Grid size={{ xs: 12, lg: 2 }}>
-              </Grid>
-              <Grid size={{ xs: 12, lg: 4 }}>
-                <Stack justifyContent={"center"} alignItems={"center"}>
+              {/* <Grid size={{ xs: 12, lg: 2 }}>
+              </Grid> */}
+              <Grid
+                mt={{ xs: 4, md: 0 }}
+                size={{ xs: 12, md: 6 }}
+                display={"flex"}
+                justifyContent={{ md: "flex-end", xs: "center" }}
+              >
+                <ImageWrapper>
+                  <BoxStyle height={450} width={350}>
+                    <img
+                      property="og:image"
+                      src={context?.state.clientData?.image ?? "/logo.webp"}
+                      alt={context?.state.clientData?.name ?? "Doctor"}
+                      height={"100%"}
+                      width={"100%"}
+                    />
+                  </BoxStyle>
+                </ImageWrapper>
+                {/* <Stack justifyContent={"center"} alignItems={"center"}>
                   <ImageStyle
                     property="og:image"
                     src={context?.state.clientData?.image ?? "/logo.webp"}
@@ -291,7 +325,7 @@ export default function Home() {
                     height={500}
                     objectFit="contain"
                   />
-                </Stack>
+                </Stack> */}
               </Grid>
             </Grid>
           </Container>
