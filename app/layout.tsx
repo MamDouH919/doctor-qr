@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data?.name || "Doctor Website"} />
         <meta name="twitter:description" content={data?.about || "Find the best medical services and doctors here."} />
-        <meta name="twitter:image" content={data?.image || "/default-thumbnail.jpg"} />
+        <meta name="twitter:image" content={"/icon.svg"} />
 
         {/* Preconnect for Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

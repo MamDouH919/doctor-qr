@@ -85,9 +85,13 @@ const ImageWrapper = styled(Box)(({ theme }) => ({
   width: 350,
   border: `5px solid ${theme.palette.primary.main}`,
   position: "relative",
+  borderRadius: "10px",
 }))
 
-const BoxStyle = styled(Box)(() => ({
+const BoxStyle = styled(Box)(({ theme }) => ({
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+  borderRadius: "10px",
+  background: theme.palette.background.default,
   position: "absolute",
   top: -15,
   right: 15,
