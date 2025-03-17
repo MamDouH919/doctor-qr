@@ -29,6 +29,7 @@ import { FAQSection } from "@/Component/Faq";
 import { VideosSection } from "@/Component/Videos";
 import Footer from "@/Component/Footer";
 import Social from "@/Component/Social";
+import Image from "next/image";
 // import Image from "next/image";
 
 
@@ -73,12 +74,15 @@ const PlayArrowAr = styled(PlayArrow)(() => ({
 }));
 
 
-// const ImageStyle = styled(Image)(() => ({
-//   // WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-//   // transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
-//   // WebkitFilter: "drop-shadow(2px 1px 5px #222)",
-//   // filter: "drop-shadow(2px 1px 5px #222)",
-// }));
+const ImageStyle = styled(Image)(() => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+  // WebkitTransform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  // transform: theme.direction === "rtl" ? "scaleX(-1)" : "none",
+  // WebkitFilter: "drop-shadow(2px 1px 5px #222)",
+  // filter: "drop-shadow(2px 1px 5px #222)",
+}));
 
 const ImageWrapper = styled(Box)(({ theme }) => ({
   height: 450,
@@ -97,9 +101,6 @@ const BoxStyle = styled(Box)(({ theme }) => ({
   right: 15,
   height: "100%",
   width: "100%",
-  "& img": {
-    objectFit: "cover",
-  }
 }))
 
 
@@ -311,12 +312,12 @@ export default function Home() {
               >
                 <ImageWrapper>
                   <BoxStyle height={450} width={350}>
-                    <img
+                    <ImageStyle
                       property="og:image"
                       src={context?.state.clientData?.image ?? "/logo.webp"}
                       alt={context?.state.clientData?.name ?? "Doctor"}
-                      height={"100%"}
-                      width={"100%"}
+                      height={10000}
+                      width={10000}
                     />
                   </BoxStyle>
                 </ImageWrapper>
