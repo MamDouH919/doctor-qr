@@ -24,6 +24,39 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const data = await fetchServicesFromAPI(); // Fetch services in the server component
 
+  const faqs = data.faq // Fetch FAQs from API
+  const articles = data.articles // Fetch FAQs from API
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs?.map((faq: { question: string; answer: string }) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })) || [],
+  };
+
+  const articlesSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog", // Can be "Article" or "NewsArticle" based on content type
+    "blogPosts": articles?.map((article: { title: string; description: string; datePublished: string; author: string; image: string; url: string }) => ({
+      "@type": "BlogPosting",
+      "headline": article.title,
+      "description": article.description,
+      // "datePublished": article.datePublished,
+      "author": {
+        "@type": "Person",
+        "name": data.name,
+      },
+      // "image": article.image || "/default-article.jpg",
+      // "url": article.url
+    })) || [],
+  };
+
   return (
     <html>
       <head>
@@ -57,6 +90,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
         {/* Canonical URL */}
         <link rel="canonical" href={`https://${currentDomain}`} />
+
+        {/* Structured Data for FAQ (SEO) */}
+        {faqs && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        )}
+        {articles && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articlesSchema) }} />
+        )}
       </head>
 
       <body className={cairo.variable}>
