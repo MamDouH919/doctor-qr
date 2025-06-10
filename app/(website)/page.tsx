@@ -30,6 +30,7 @@ import { VideosSection } from "@/Component/Videos";
 import Footer from "@/Component/Footer";
 import Social from "@/Component/Social";
 import Image from "next/image";
+import TestimonialsSection from "@/Component/TestimonialsSection";
 // import Image from "next/image";
 
 
@@ -190,6 +191,9 @@ export default function Home() {
                 <Button color="inherit" onClick={() => scrollToSection("faq")}>
                   {translate[context?.state.clientData?.lang as "ar" | "en"]["FAQ"]}
                 </Button>
+                <Button color="inherit" onClick={() => scrollToSection("testimonials")}>
+                  {translate[context?.state.clientData?.lang as "ar" | "en"]["Testimonials"]}
+                </Button>
                 <Button variant="contained" onClick={handleOpen}>
                   {translate[context?.state.clientData?.lang as "ar" | "en"]["onlineConsultation"]}
                 </Button>
@@ -246,6 +250,11 @@ export default function Home() {
                       {translate[context?.state.clientData?.lang as "ar" | "en"]["FAQ"]}
                     </Typography>
                   </MenuItem>
+                  <MenuItem onClick={() => { scrollToSection("testimonials") }}>
+                    <Typography sx={{ textAlign: 'center' }}>
+                      {translate[context?.state.clientData?.lang as "ar" | "en"]["Testimonials"]}
+                    </Typography>
+                  </MenuItem>
                   <MenuItem onClick={() => {
                     handleOpen()
                     handleCloseNavMenu()
@@ -287,9 +296,9 @@ export default function Home() {
                   </Typography>
                   <Social social={context?.state.clientData?.social} />
                   <Stack gap={2} direction={"row"} justifyContent={"center"} alignItems={"center"} flexWrap={"wrap"}>
-                    <Button variant="contained" size="large">
+                    {/* <Button variant="contained" size="large">
                       {translate[context?.state.clientData?.lang as "ar" | "en"]["scheduleACall"]}
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="outlined"
                       size="large"
@@ -361,6 +370,9 @@ export default function Home() {
         {/* Other Sections */}
         <ArticlesSection />
         <FAQSection />
+
+        <TestimonialsSection />
+
         <VideosSection />
         <Footer />
       </Stack>

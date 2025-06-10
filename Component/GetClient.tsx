@@ -16,7 +16,7 @@ const GetClient = ({ children }: { children: React.ReactNode }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/api/client?domain=${currentDomain}`);
-                console.log(response.data);
+                response.data.testimonials = response.data.testimonials.filter((testimonial: any) => testimonial.status === "approved");
 
                 context?.dispatch({ type: "SET_CLIENT_DATA", payload: response.data });
                 setLoading(false);

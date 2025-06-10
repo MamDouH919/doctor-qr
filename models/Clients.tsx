@@ -20,6 +20,15 @@ const SocialSchema = new mongoose.Schema({
   link: { type: String, required: true },
 });
 
+const TestimonialsSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  comment: { type: String, required: true },
+  rate: { type: Number, required: true },
+  status: { type: String, required: true, enum: ["pending", "approved", "rejected"], default: "pending" },
+});
+
 const ClientsSchema = new mongoose.Schema({
   name: { type: String, required: true },
   title: { type: String, required: true },
@@ -36,6 +45,11 @@ const ClientsSchema = new mongoose.Schema({
   social: [SocialSchema], // Array of video URLs
   domain: { type: String, required: true },
   active: { type: Boolean, required: true, default: true },
+  testimonials: [TestimonialsSchema],
+  verificationCode: { type: String, },
+  email: { type: String, required: true, default: "" },
+  password: { type: String, required: true },
+  token: { type: String, default: "" },
 }, {
   timestamps: true,
   versionKey: false,

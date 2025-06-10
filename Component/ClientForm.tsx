@@ -23,6 +23,7 @@ const ClientForm = ({
             social: [{ type: "", link: "" }],
             active: false,
             name: "",
+            email: "",
             title: "",
             color: "",
             lang: "",
@@ -32,6 +33,7 @@ const ClientForm = ({
             description: "",
             image: "",
             domain: "",
+            password: ""
         },
     });
 
@@ -68,6 +70,7 @@ const ClientForm = ({
                     const response = await axios.get(`/api/clientById?id=${id}`);
                     setValue("domain", response.data.domain);
                     setValue("name", response.data.name);
+                    setValue("email", response.data.email);
                     setValue("title", response.data.title);
                     setValue("color", response.data.color);
                     setValue("lang", response.data.lang);
@@ -134,7 +137,7 @@ const ClientForm = ({
                         </Stack>
                         <Grid container spacing={2} m={0}>
                             {/* Basic Info Fields */}
-                            {["domain", "name", "title", "color", "image", "description", "phone", "whatsApp"].map((field) => (
+                            {["domain", "name", "email", "password", "title", "color", "image", "description", "phone", "whatsApp"].map((field) => (
                                 <Grid size={{ xs: 12, sm: 6 }} key={field}>
                                     <ControlMUITextField
                                         label={field}

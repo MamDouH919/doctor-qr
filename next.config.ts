@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "false" },
           { key: "Access-Control-Allow-Origin", value: "*" }, // Or specify a specific domain for security
-          { key: "Access-Control-Allow-Methods", value: "GET, POST, DELETE, PATCH, PUT" },
+          { key: "Access-Control-Allow-Methods", value: "GET" },
           { key: "Access-Control-Allow-Headers", value: "Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date" },
         ]
       }

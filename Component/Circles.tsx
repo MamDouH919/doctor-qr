@@ -1,5 +1,6 @@
 import { Box, Stack } from '@mui/material'
 import { styled } from "@mui/material/styles";
+import { memo } from 'react';
 
 const Circles = ({
     right = "40%",
@@ -54,4 +55,4 @@ const Circles = ({
     )
 }
 
-export default Circles
+export default memo(Circles)

@@ -23,6 +23,16 @@ interface Social {
     link: string;
 }
 
+export interface Testimonial {
+    _id: string;
+    name: string;
+    email: string;
+    phone: string;
+    comment: string;
+    rate: number;
+    status: string;
+}
+
 export interface ClientData {
     id: string;
     name: string;
@@ -41,6 +51,7 @@ export interface ClientData {
     whatsApp: string;
     phone: string;
     social: Social[];
+    testimonials: Testimonial[];
     [key: string]: unknown; // Adjust this based on your actual JSON structure
 }
 

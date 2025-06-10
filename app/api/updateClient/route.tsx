@@ -11,6 +11,7 @@ export async function POST(req: Request): Promise<NextResponse> {
         const {
             id, // Include `id` in the request body
             name,
+            email,
             title,
             description,
             appointments,
@@ -25,7 +26,8 @@ export async function POST(req: Request): Promise<NextResponse> {
             whatsApp,
             phone,
             social,
-            domain
+            domain,
+            password
         } = await req.json();
 
         // Check if the client exists by id
@@ -39,6 +41,8 @@ export async function POST(req: Request): Promise<NextResponse> {
 
         // Update the existing client's data
         existingClient.name = name || existingClient.name;
+        existingClient.email = email || existingClient.email;
+        existingClient.password = password || existingClient.password;
         existingClient.title = title || existingClient.title;
         existingClient.description = description || existingClient.description;
         existingClient.appointments = appointments || existingClient.appointments;

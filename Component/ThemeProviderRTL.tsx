@@ -5,6 +5,7 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ClientContext } from '@/Providers/contexts/ClientContext';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Toaster } from "sonner";
 
 const ThemeProviderRTL = ({ children }: { children: React.ReactNode }) => {
     const context = useContext(ClientContext);
@@ -33,6 +34,13 @@ const ThemeProviderRTL = ({ children }: { children: React.ReactNode }) => {
             }}
         >
             <ThemeProvider theme={theme}>
+                <Toaster richColors toastOptions={{
+                    style: {
+                        fontFamily: [`cairo`, "sans-serif"].join(","),
+                        fontSize: 12.5,
+                    },
+                }}
+                />
                 {children}
             </ThemeProvider>
         </AppRouterCacheProvider>
