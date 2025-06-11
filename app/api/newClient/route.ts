@@ -24,6 +24,8 @@ export async function POST(req: Request): Promise<NextResponse> {
             whatsApp,
             phone,
             social,
+            email,
+            password
         } = await req.json();
 
         // Ensure the domain is unique
@@ -52,6 +54,8 @@ export async function POST(req: Request): Promise<NextResponse> {
             whatsApp,
             phone,
             social,
+            email,
+            password
         });
 
         // Save the new client to the database

@@ -27,7 +27,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const PaperStyle = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(4, 0),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.contrastText,
     borderRadius: theme.spacing(1.5),
 }))
@@ -38,6 +38,9 @@ const QuoteIcon = styled(Box)(({ theme }) => ({
     opacity: 0.3,
     lineHeight: 1,
     fontFamily: "serif",
+}))
+const TypographyStyle = styled(Typography)(() => ({
+    textWrap: "wrap",
 }))
 
 const labels: { [index: string]: string } = {
@@ -94,7 +97,7 @@ export default function TestimonialsSection() {
             .then((data) => {
                 if (data.status === 'duplicate') {
                     console.log(data);
-                    
+
                     // TODO: Add "DuplicateTestimonial" to translation files
                     toast.error(translate[context?.state.clientData?.lang as "ar" | "en"][data.message as keyof typeof translate["en"]]);
                 } else {
@@ -147,7 +150,7 @@ export default function TestimonialsSection() {
                                     emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
                                 />
                                 {value !== null && (
-                                    <Box sx={{ ml: 2 }}>
+                                    <Box ml={2}>
                                         {translate[context?.state.clientData?.lang as "ar" | "en"][labels[hover !== -1 ? hover : value] as keyof typeof translate["en"]]}
                                     </Box>
                                 )}
@@ -208,23 +211,25 @@ export default function TestimonialsSection() {
                         <BoxScrollX>
                             {context?.state.clientData?.testimonials.map((testimonial) => (
                                 <StyledCard elevation={2} key={testimonial._id}>
-                                    <CardContent sx={{ p: 3, flexGrow: 1, display: "flex", flexDirection: "column" }}>
+                                    <CardContent 
+                                        component={Stack}
+                                        flexGrow={1}
+                                        p={3}
+
+                                    >
                                         {/* Quote Icon */}
                                         <QuoteIcon>&quot;</QuoteIcon>
 
                                         {/* Testimonial Description */}
-                                        <Typography
+                                        <TypographyStyle
                                             variant="body1"
-                                            sx={{
-                                                mb: 3,
-                                                flexGrow: 1,
-                                                fontStyle: "italic",
-                                                lineHeight: 1.6,
-                                                textWrap: "wrap",
-                                            }}
+                                            mb={3}
+                                            flexGrow={1}
+                                            fontStyle="italic"
+                                            lineHeight={1.6}
                                         >
                                             {testimonial.comment}
-                                        </Typography>
+                                        </TypographyStyle>
 
                                         {/* Rating */}
                                         <Box>
