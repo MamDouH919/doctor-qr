@@ -38,6 +38,7 @@ const translate = {
         "ShareYourThoughtsAndHelpOthers": "اخبرنا عن تجربتك وساعد المرضى الآخرين بتقييم الطبيب.",
         "WriteYourReviewAndRateTheDoctor": "اكتب تعليقك وقم بتقييم الطبيب",
         "DuplicateTestimonial": "لقد قمت بإرسال آراء بنفس البريد الإلكتروني أو رقم الهاتف من قبل",
+        "Clinics": "العيادات والمستشفيات",
     },
     "en": {
         "Home": "Home",
@@ -77,6 +78,7 @@ const translate = {
         "ShareYourThoughtsAndHelpOthers": "Share Your Thoughts and Help Others",
         "WriteYourReviewAndRateTheDoctor": "Write Your Review & Rate the Doctor",
         "DuplicateTestimonial": "You have already submitted a testimonial with this email or phone number",
+        "Clinics": "Clinics & Hospitals",
     },
 };
 

@@ -16,7 +16,12 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
-    domains: ["firebasestorage.googleapis.com"], // Add your image domain
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+    ], // Add your image domain
   },
 };
 

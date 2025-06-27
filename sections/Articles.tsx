@@ -1,3 +1,4 @@
+"use client"
 import {
   Accordion,
   AccordionSummary,
@@ -8,15 +9,17 @@ import {
   Stack,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Title } from "./Title";
-import Line from "./Line";
-import Circles from "./Circles";
 import translate from "@/lib/Translate";
 import { useContext } from "react";
 import { ClientContext } from "@/Providers/contexts/ClientContext";
+import Circles from "@/Component/Circles";
+import { Title } from "@/Component/Title";
+import Line from "@/Component/Line";
 
 export function ArticlesSection() {
   const context = useContext(ClientContext);
+  console.log("ArticlesSection context:", context?.state.clientData?.articles);
+  
 
   return (
     <Box
@@ -48,7 +51,7 @@ export function ArticlesSection() {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body2">{article.description}</Typography>
+                  <Typography variant="body2">{article.content}</Typography>
                 </AccordionDetails>
               </Accordion>
             ))

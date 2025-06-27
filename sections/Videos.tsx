@@ -1,11 +1,11 @@
 import { Box, Container, Grid2 as Grid, Stack, Typography } from "@mui/material";
-import Circles from "./Circles";
-import { Title } from "./Title";
-import Line from "./Line";
 import translate from "@/lib/Translate";
 import { useContext } from "react";
 import { ClientContext } from "@/Providers/contexts/ClientContext";
-import VideoEmbed from "./VideoEmbed";
+import Circles from "@/Component/Circles";
+import { Title } from "@/Component/Title";
+import Line from "@/Component/Line";
+import VideoEmbed from "@/Component/VideoEmbed";
 
 export function VideosSection() {
     const context = useContext(ClientContext);
@@ -33,7 +33,7 @@ export function VideosSection() {
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     /> */}
-                                    <VideoEmbed url={video.path} />
+                                    <VideoEmbed url={video.link} />
                                 </Grid>
                             ))
                         ) : (

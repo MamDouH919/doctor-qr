@@ -8,12 +8,12 @@ import {
     Stack,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Title } from "./Title";
-import Line from "./Line";
-import Circles from "./Circles";
 import { useContext } from "react";
 import { ClientContext } from "@/Providers/contexts/ClientContext";
 import translate from "@/lib/Translate";
+import Circles from "@/Component/Circles";
+import { Title } from "@/Component/Title";
+import Line from "@/Component/Line";
 
 export function FAQSection() {
     const context = useContext(ClientContext);
@@ -36,8 +36,8 @@ export function FAQSection() {
                         <Line />
                     </Box>
 
-                    {context?.state.clientData?.faq && context?.state.clientData?.faq.length > 0 ? (
-                        context?.state.clientData?.faq.map((faq, index) => (
+                    {context?.state.clientData?.faqs && context?.state.clientData?.faqs.length > 0 ? (
+                        context?.state.clientData?.faqs.map((faq, index) => (
                             <Accordion key={index} sx={{ mb: 2 }} defaultExpanded={index === 0}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
