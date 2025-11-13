@@ -120,7 +120,7 @@ export default function ClinicTabs() {
             py={2}
         >
             <Circles right="20%" bottom="1px" />
-            <Container>
+            <Container component={Stack} spacing={4}>
                 <Box textAlign="center">
                     <Title>
                         {translate[context?.state.clientData?.lang as "ar" | "en"]["Clinics"]}
@@ -165,10 +165,10 @@ export default function ClinicTabs() {
                                         </Box>
 
                                         <Paper
-                                            variant="outlined"
                                             component={Stack}
                                             spacing={2}
                                             p={3}
+                                            elevation={3}
                                         >
                                             {/* <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
                                                 {clinic.name}
@@ -253,7 +253,7 @@ export default function ClinicTabs() {
                                             {clinic.appointments.map((appointment: any) => (
                                                 <Paper
                                                     key={appointment._id}
-                                                    variant="outlined"
+                                                    elevation={3}
                                                     component={Stack}
                                                     spacing={2}
                                                     p={3}

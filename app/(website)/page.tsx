@@ -26,6 +26,7 @@ const Page = () => {
       />
     </Stack>
   }
+  
   return (
     <>
       <AppBarComponent />

@@ -21,7 +21,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const currentDomain = (await headerList).get("host");
 
   async function fetchServicesFromAPI() {
-    const response = await fetch(`http://localhost:3000/api/doctor?domain=${currentDomain?.split(":")[0]}`, {
+    const response = await fetch(`https://test.3n-dev.com/api/doctor?domain=${currentDomain?.split(":")[0]}`, {
       cache: 'no-store', // Disable caching
     });
     return response.json();
@@ -29,6 +29,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const data = await fetchServicesFromAPI(); // Fetch services in the server component
 
+  if (!data.success && data.errorCode === "DoctorNotFound") {
+    return (
+      <html>
+        <head>
+          <title>Doctor Not Found</title>
+          <meta name="description" content="The requested doctor was not found." />
+        </head>
+        <body>
+          <h1>Doctor Not Found</h1>
+          <p>The requested doctor does not exist or the domain is incorrect.</p>
+        </body>
+      </html>
+    );
+  }
   console.log("data", data);
 
   const faqs = data.data.doctor.faq // Fetch FAQs from API
@@ -65,20 +79,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   };
 
 
-  if (!data.success && data.errorCode === "DoctorNotFound") {
-    return (
-      <html>
-        <head>
-          <title>Doctor Not Found</title>
-          <meta name="description" content="The requested doctor was not found." />
-        </head>
-        <body>
-          <h1>Doctor Not Found</h1>
-          <p>The requested doctor does not exist or the domain is incorrect.</p>
-        </body>
-      </html>
-    );
-  }
+
 
   const lang = data.data?.doctor?.lang || "en";
   const direction = lang === "ar" ? "rtl" : "ltr";
